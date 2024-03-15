@@ -8,11 +8,13 @@ import type {
   SystemInfo,
   ProofOfFee,
   govEventData,
+  Transaction,
 } from '../types'
 import * as systemPayloads from '../api/payloads/system'
 import * as validatorPayloads from '../api/payloads/validators'
 import * as commonPayloads from '../api/payloads/common'
 import { govEvents } from '../api/payloads/events'
+import { fetchTransactions } from './transactions.js'
 
 export interface User {
   address: string
@@ -32,7 +34,7 @@ export const indexDataStore = writable<IndexData>()
 export const valDataStore = writable<valData>()
 export const selectedAccount = writable<UserAccount>({ address: '' })
 export const govStore = writable<govEventData[]>()
-
+export const transactions = writable<Transaction[]>([])
 export const setAccount = (address: string) => {
   selectedAccount.set({
     address,
@@ -158,6 +160,7 @@ export const refresh = async () => {
     getIndexData()
     getSystemInfo()
     getValidators()
+    fetchTransactions()
     getEventList(govEvents()).then((res) => govStore.set(res))
   } catch (error) {
     console.error(`Failed to refresh: ${error}`)

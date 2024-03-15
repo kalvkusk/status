@@ -40,6 +40,7 @@ export interface SlowWalletBalance {
   unlocked: number
   total: number
 }
+
 export interface UserAccount {
   address: string
   in_val_set?: boolean
@@ -53,6 +54,7 @@ export interface valData {
   eligible_validators: string[] // Array of addresses
   current_profiles: UserAccount[]
 }
+
 export interface govEventData {
   data: {
     num_votes: string
@@ -61,4 +63,12 @@ export interface govEventData {
     stake_pool: string
     voter: string
   }
+}
+
+export interface Transaction {
+  sender: string,
+  receiver: string,
+  amount: number,
+  ledger_version: number,
+  ledger_timestamp: number,
 }
