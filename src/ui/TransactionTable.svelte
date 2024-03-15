@@ -1,13 +1,12 @@
 <script lang="ts">
-  import { Transaction } from '../types'
-
-  export let transactions: Transaction[] = []
+  import { scaleCoin } from '../utils/coin'
+  import {transactions} from '../store/index'
 </script>
 
 <main>
   <table class="uk-table uk-table-responsive uk-table-divider">
     <thead>
-    sender,receiver,amount,version,timestamp
+    <!-- sender,receiver,amount,version,timestamp -->
     <tr>
       <th>Sender</th>
       <th>Receiver</th>
@@ -17,14 +16,14 @@
     </tr>
     </thead>
     <tbody>
-    {#if transactions.length > 0}
-      {#each transactions as tx}
+    {#if $transactions.length > 0}
+      {#each $transactions as tx}
         <tr>
           <td>{tx.sender}</td>
           <td>{tx.receiver}</td>
-          <td>{tx.amount}</td>
+          <td>{scaleCoin(tx.amount)}</td>
           <td>{tx.ledger_version}</td>
-          <td>{tx.ledger_timestamp}</td>
+          <td>{new Date(Math.floor(tx.ledger_timestamp / 1_000)).toLocaleString()}</td>
         </tr>
       {/each}
     {/if}

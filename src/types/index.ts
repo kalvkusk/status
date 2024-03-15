@@ -70,5 +70,5 @@ export interface Transaction {
   receiver: string,
   amount: number,
   ledger_version: number,
-  ledger_timestamp: string,
+  ledger_timestamp: number,
 }

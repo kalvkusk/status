@@ -8,6 +8,7 @@ import type {
   SystemInfo,
   ProofOfFee,
   govEventData,
+  Transaction,
 } from '../types'
 import * as systemPayloads from '../api/payloads/system'
 import * as validatorPayloads from '../api/payloads/validators'
@@ -33,7 +34,7 @@ export const indexDataStore = writable<IndexData>()
 export const valDataStore = writable<valData>()
 export const selectedAccount = writable<UserAccount>({ address: '' })
 export const govStore = writable<govEventData[]>()
-
+export const transactions = writable<Transaction[]>([])
 export const setAccount = (address: string) => {
   selectedAccount.set({
     address,

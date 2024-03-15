@@ -9,7 +9,7 @@
   import AccountView from '../ui/AccountView.svelte'
   import BoundaryStatus from '../ui/BoundaryStatus.svelte'
   // import GovEvents from '../ui/GovEvents.svelte'
-
+  import TransactionTable from '../ui/TransactionTable.svelte'
   onMount(async () => {
     await initApi() // ONLY DO THIS ONCE ON LOAD
 
@@ -52,5 +52,7 @@
     <div class="uk-flex">
       <Validators />
     </div>
+    <div class="uk-flex">
+      <TransactionTable />
   </div>
 </main>
